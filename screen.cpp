@@ -36,7 +36,7 @@ Screen::Screen(QWidget *parent)
 
     upButton->setGeometry(380, 335, 50, 40);                    /*上*/
 
-    quit->setGeometry(490,380,50,40);                           /*退出*/
+    quit->setGeometry(740,380,50,40);                           /*退出*/
 
     /* 设置标签的字体和颜色 */
     QFont font;
