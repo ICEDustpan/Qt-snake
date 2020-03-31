@@ -42,6 +42,8 @@ private:
 	QPushButton *leftButton;
 	QPushButton *rightButton;
 
+    QPushButton *quit ;                             /*退出按钮*/
+
 
 
 	Screen *screen;									/* 游戏界面 */

@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QApplication>
 
 Screen::Screen(QWidget *parent)
 	: QWidget(parent)
@@ -14,11 +15,12 @@ Screen::Screen(QWidget *parent)
 	init_var();										/* 初始化变量 */
 	timer = new QTimer(this);							/* 创建定时器 */
 
-    scoreLabel = new QLabel(tr("Your Score: 0"), this);
-    upButton = new QPushButton(tr("Up"), this);
+    scoreLabel = new QLabel(tr("Your Score: 0"), this);     /*new 一个 QLabel*/
+    upButton = new QPushButton(tr("Up"), this);             /*new 一个 Button*/
     downButton = new QPushButton(tr("Down"), this);
     rightButton = new QPushButton(tr("Right"), this);
     leftButton = new QPushButton(tr("Left"), this);
+    quit = new QPushButton(tr("Quit"),this);
 
 
     /*移动按钮 分数 位置* 用绝对坐标设置按钮的位置 用绝对坐标设置标签的位置 */
@@ -32,7 +34,9 @@ Screen::Screen(QWidget *parent)
 
     rightButton->setGeometry(435, 380, 50, 40);                 /*右*/
 
-    upButton->setGeometry(380, 335, 50, 40);                     /*上*/
+    upButton->setGeometry(380, 335, 50, 40);                    /*上*/
+
+    quit->setGeometry(490,380,50,40);                           /*退出*/
 
     /* 设置标签的字体和颜色 */
     QFont font;
@@ -43,10 +47,13 @@ Screen::Screen(QWidget *parent)
 	palette.setColor(QPalette::WindowText, Qt::red);
 	scoreLabel->setPalette(palette);
 
+    /*信号接受槽*/
 	connect(upButton, SIGNAL(clicked()), this, SLOT(upClicked()));
 	connect(downButton, SIGNAL(clicked()), this, SLOT(downClicked()));
 	connect(rightButton, SIGNAL(clicked()), this, SLOT(rightClicked()));
     connect(leftButton, SIGNAL(clicked()), this, SLOT(leftClicked()));
+    connect(quit, SIGNAL(clicked()), this, SLOT(quitClicked()));
+
 
 	connect(timer, SIGNAL(timeout()), this, SLOT(my_timeout()));
 	times = 200;
@@ -185,6 +192,16 @@ void Screen::leftClicked(void)
 	snake.ChangeDirection(4);
 	setFocus();
 }
+
+
+//结束程序 退出窗口
+void Screen::quitClicked(void)
+{
+    QApplication* app;
+    app->quit();
+}
+
+
 
 void Screen::startGame(void)
 {

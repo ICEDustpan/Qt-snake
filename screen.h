@@ -21,7 +21,7 @@ public:
 private slots:
 	void my_timeout(void);
 	void startGame(void);
-	void pauseGame(void);
+    void pauseGame(void);
 	void continueGame(void);
 	void speedUp(void);
 	void speedDown(void);
@@ -29,6 +29,7 @@ private slots:
     void downClicked(void);                             /* 处理按钮Down点击的槽 */
 	void rightClicked(void);							/* 处理按钮Right点击的槽 */
 	void leftClicked(void);								/* 处理按钮Left点击的槽 */
+    void quitClicked(void);                             /* 处理按钮quit点击的槽*/
 
 
 private:
@@ -36,11 +37,12 @@ private:
 	void init_var(void);								/* 初始化变量 */
 	void keyPressEvent(QKeyEvent *event);				/* 处理键盘事件的函数*/
 
-	QLabel *scoreLabel;								/* 显示得分的标签 */
-	QPushButton *upButton;							/* 向上按钮 */
+    QLabel *scoreLabel;                             	/* 显示得分的标签 */
+    QPushButton *upButton;                          	/* 向上按钮 */
 	QPushButton *downButton;							/* 向下按钮 */
 	QPushButton *leftButton;							/* 向左按钮 */
 	QPushButton *rightButton;							/* 向右按钮 */
+    QPushButton *quit;                                  /* 退出按钮 */
 
 	Snake snake;
 	bool IsDie;
